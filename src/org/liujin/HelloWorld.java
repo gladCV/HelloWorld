@@ -1,38 +1,53 @@
 package org.liujin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * @author liuin
  *
  */
 public class HelloWorld {
 
+    private String name;
+    private int age;
+    private static int num;
+
+    public HelloWorld(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    static {
+        System.out.println("静态代码块..........");
+        num = 1;
+        System.out.println(num);
+    }
+    {
+        System.out.println("非静态代码块..........");
+        name = "james";
+        age = 10;
+        Object o = new Object();
+    }
+    public HelloWorld() {
+        System.out.println("构造器..............");
+    }
     public static void main(String[] args) {
-        System.out.println("Hello world");
-        System.out.println(new HelloWorld().getMoney());
-        ArrayList<Integer> a = new ArrayList<>();
-        a.add(2);
-        if (a == null) {
-            System.out.println("a = " + a);
+        HelloWorld helloWorld = new HelloWorld();
+        HelloWorld.Dog dog = helloWorld.new Dog();
+        dog.getName();
+        Comparable c = new Comparable() {
+
+            @Override
+            public int compareTo(Object o) {
+                return 0;
+            }
+        };
+    }
+    class Dog {
+        String name = "haha";
+
+        public void getName() {
+            System.out.println(this.name);
+            System.out.println(HelloWorld.this.name);
         }
-        System.out.println(a);
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(1);
-        // 这是单行注释
-        /**
-         * sdjsdsjd
-         * dsdjsjdkhdsk
-         */
-        System.out.println("HelloWorld.main");
-        System.out.println("args = " + Arrays.deepToString(args));
-        System.out.println(args);
-
     }
 
-
-    private int getMoney() {
-        return 0;
-    }
 }
